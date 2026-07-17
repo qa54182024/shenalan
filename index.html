@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title>申家豪 Alan · 个人主页</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f7f2ea 0%, #e8e0d5 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      padding: 1.5rem;
+      margin: 0;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: -20%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle at 30% 30%, rgba(210, 180, 140, 0.25), transparent 70%);
+      border-radius: 50%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      bottom: -15%;
+      left: -8%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle at 70% 70%, rgba(188, 143, 143, 0.2), transparent 70%);
+      border-radius: 50%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .card {
+      position: relative;
+      z-index: 10;
+      max-width: 800px;
+      width: 100%;
+      background: rgba(255, 250, 245, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: linear-gradient(135deg, rgba(255,251,245,0.9) 0%, rgba(250,245,235,0.95) 100%);
+      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.08), 0 10px 25px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255,255,255,0.8);
+      border-radius: 3.5rem;
+      padding: 2.5rem 2.2rem;
+      border: 1px solid rgba(230, 210, 180, 0.5);
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 500px) {
+      .card {
+        padding: 2rem 1.5rem;
+        border-radius: 2.8rem;
+      }
+    }
+
+    .profile-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.8rem;
+    }
+
+    .avatar-wrapper {
+      width: 100px;
+      height: 100px;
+      flex-shrink: 0;
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c2a27b 0%, #a68b6a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 15px 25px rgba(140, 100, 60, 0.25), 0 0 0 6px rgba(245, 235, 220, 0.7);
+    }
+
+    .avatar i {
+      font-size: 4rem;
+      color: #fef7e9;
+    }
+
+    .chinese-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.9rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: #3e362e;
+    }
+
+    .english-name {
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: #8b7355;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(220, 200, 170, 0.3);
+      padding: 0.2rem 1.2rem;
+      border-radius: 2rem;
+      width: fit-content;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, #ccb699, #b7a17c, #ccb699, transparent);
+      opacity: 0.5;
+      margin: 0.2rem 0;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .info-item {
+      background: rgba(255, 255, 250, 0.75);
+      backdrop-filter: blur(10px);
+      border-radius: 1.8rem;
+      padding: 1.2rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      border: 1px solid rgba(220, 190, 150, 0.7);
+    }
+
+    .info-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(145deg, #f3e5d0, #ddceb5);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: #5e4632;
+    }
+
+    .info-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #9b8975;
+    }
+
+    .info-value {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #3e362e;
+    }
+
+    .bio-section {
+      background: rgba(250, 242, 230, 0.8);
+      border-radius: 2rem;
+      padding: 1.2rem 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .bio-text {
+      color: #4e4338;
+      font-weight: 500;
+    }
+
+    .games-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 0.5rem;
+    }
+
+    .game-card {
+      background: rgba(255, 250, 240, 0.8);
+      backdrop-filter: blur(12px);
+      border-radius: 2.2rem;
+      padding: 1.5rem;
+      border: 1px solid rgba(200, 170, 120, 0.5);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.04);
+      transition: all 0.2s;
+    }
+
+    .game-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.2rem;
+      font-weight: 700;
+      color: #5c432b;
+      font-size: 1.3rem;
+    }
+
+    .game-header i {
+      font-size: 1.8rem;
+      color: #b39264;
+    }
+
+    .game-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    button {
+      background: #e7d7bd;
+      border: none;
+      border-radius: 2.5rem;
+      padding: 0.7rem 1.6rem;
+      font-weight: 600;
+      color: #4a3720;
+      background: linear-gradient(to bottom, #f7ecdb, #e3cfb0);
+      box-shadow: 0 5px 0 #b29674, 0 6px 12px rgba(0,0,0,0.1);
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.1s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: 1px solid #cfb690;
+    }
+
+    button:active {
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 #8b7355, 0 6px 12px rgba(0,0,0,0.1);
+      background: linear-gradient(to bottom, #e5cfb0, #d7bc90);
+    }
+
+    .spin-result {
+      font-weight: 700;
+      font-size: 1.6rem;
+      margin-left: 1rem;
+      color: #4d3820;
+      min-width: 70px;
+    }
+
+    .click-area {
+      background: #f1e3cf;
+      border-radius: 2rem;
+      padding: 0.8rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* 俄罗斯方块样式 */
+    .tetris-container {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    .tetris-board {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      grid-template-rows: repeat(20, 1fr);
+      gap: 1px;
+      background: #2d2416;
+      border: 3px solid #5c432b;
+      border-radius: 12px;
+      padding: 2px;
+      width: 250px;
+      height: 500px;
+    }
+
+    .tetris-cell {
+      background: #3e362e;
+      border-radius: 2px;
+      transition: background 0.1s;
+    }
+
+    .tetris-cell.filled {
+      background: #c2a27b;
+      border: 1px solid #dac29e;
+    }
+
+    .tetris-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      min-width: 120px;
+    }
+
+    .tetris-score {
+      background: #f1e3cf;
+      padding: 1rem;
+      border-radius: 1rem;
+      text-align: center;
+      font-weight: 700;
+      color: #4a3720;
+    }
+
+    .tetris-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .tetris-controls button {
+      width: 100%;
+      justify-content: center;
+    }
+
+    @media (max-width: 600px) {
+      .tetris-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .tetris-board {
+        width: 200px;
+        height: 400px;
+      }
+    }
+
+    .attention-bar {
+      position: relative;
+      z-index: 20;
+      max-width: 800px;
+      width: 100%;
+      margin-top: 0.5rem;
+      background: linear-gradient(105deg, #2d2416 0%, #4a3720 100%);
+      border-radius: 4rem;
+      padding: 1.2rem 2rem;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.3), 0 0 0 3px rgba(245, 215, 150, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 215, 140, 0.6);
+      animation: gentlePulse 2.2s infinite alternate;
+    }
+
+    .attention-text {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #ffecd6;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .attention-link {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(to bottom, #ffeed9, #f7d9a4);
+      padding: 0.5rem 1.8rem;
+      border-radius: 3rem;
+      text-decoration: none;
+      color: #2d2416;
+      box-shadow: 0 6px 0 #b2905f;
+    }
+
+    @keyframes gentlePulse {
+      0% { box-shadow: 0 15px 25px rgba(0,0,0,0.3), 0 0 0 2px rgba(245, 200, 100, 0.7); }
+      100% { box-shadow: 0 22px 32px rgba(0,0,0,0.4), 0 0 0 5px rgba(255, 185, 70, 0.9); }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <!-- 头部简介 -->
+    <div class="profile-header">
+      <div class="avatar-wrapper">
+        <div class="avatar"><i class="fas fa-user-astronaut"></i></div>
+      </div>
+      <div>
+        <h1 class="chinese-name">申家豪</h1>
+        <div class="english-name"><i class="fas fa-globe-americas"></i> Alan</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="info-grid">
+      <div class="info-item"><div class="info-icon"><i class="fas fa-birthday-cake"></i></div><div><span class="info-label">生日</span><div class="info-value">10月21日 🎂</div></div></div>
+      <div class="info-item"><div class="info-icon"><i class="fas fa-feather-alt"></i></div><div><span class="info-label">英文名</span><div class="info-value">Alan</div></div></div>
+      <div class="info-item"><div class="info-icon"><i class="fas fa-seedling"></i></div><div><span class="info-label">标识</span><div class="info-value">探索者</div></div></div>
+    </div>
+    <div class="bio-section">
+      <i class="fas fa-quote-right" style="font-size:2rem; color:#b39264;"></i>
+      <div class="bio-text"><strong>申家豪 · Alan</strong> 生于金秋，天秤座的优雅与创造力并行。来试试下面的小游戏吧！</div>
+    </div>
+
+    <!-- 游戏区域 -->
+    <div class="games-grid">
+      <!-- 游戏1: 幸运转盘 -->
+      <div class="game-card">
+        <div class="game-header"><i class="fas fa-dice-d6"></i> 幸运数字转盘</div>
+        <div class="game-content">
+          <button id="spinButton"><i class="fas fa-sync-alt"></i> 转动转盘</button>
+          <span class="spin-result" id="spinDisplay">🎲</span>
+          <span style="color:#5e4a32; font-size:0.9rem;">点击获取1-21之间的幸运数字</span>
+        </div>
+      </div>
+
+      <!-- 游戏2: 快速点击挑战 -->
+      <div class="game-card">
+        <div class="game-header"><i class="fas fa-hand-pointer"></i> 快速点击 · 10秒挑战</div>
+        <div class="game-content" style="flex-wrap: wrap;">
+          <div class="click-area">
+            <button id="clickGameBtn"><i class="fas fa-bullseye"></i> 点我！</button>
+            <span style="font-weight:700; margin-left:0.5rem;">得分: <span id="clickScore">0</span></span>
+            <span style="margin-left:1rem; font-size:0.9rem;">时间: <span id="timerDisplay">10</span>s</span>
+          </div>
+          <button id="resetClickGame"><i class="fas fa-redo-alt"></i> 重新开始</button>
+        </div>
+        <p style="font-size:0.8rem; color:#6b5a40; margin-top:0.5rem;">在10秒内尽可能多地点击按钮，看看你的手速！</p>
+      </div>
+
+      <!-- 游戏3: 俄罗斯方块 -->
+      <div class="game-card">
+        <div class="game-header"><i class="fas fa-cubes"></i> 俄罗斯方块</div>
+        <div class="tetris-container">
+          <div class="tetris-board" id="tetrisBoard"></div>
+          <div class="tetris-info">
+            <div class="tetris-score">
+              <div style="font-size:0.8rem;">得分</div>
+              <div style="font-size:1.5rem;" id="tetrisScore">0</div>
+            </div>
+            <div class="tetris-controls">
+              <button id="tetrisStart"><i class="fas fa-play"></i> 开始游戏</button>
+              <button id="tetrisPause"><i class="fas fa-pause"></i> 暂停</button>
+              <button id="tetrisReset"><i class="fas fa-redo-alt"></i> 重新开始</button>
+            </div>
+            <p style="font-size:0.75rem; color:#6b5a40;">键盘操作：← → 移动 ↓ 加速 ↑ 旋转</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; color:#b7a48b; margin-top:0.5rem;">🎮 小游戏专区 · 放松一下</div>
+  </div>
+
+  <!-- 底部关注栏 -->
+  <div class="attention-bar">
+    <div class="attention-text"><i class="fas fa-exclamation-circle"></i> 你是谁？请关注我！</div>
+    <a href="https://b23.tv/IqRLRu3" target="_blank" rel="noopener noreferrer" class="attention-link">
+      <i class="fab fa-bilibili"></i> b23.tv/IqRLRu3
+    </a>
+  </div>
+
+  <script>
+    (function() {
+      // ---------- 游戏1: 幸运数字转盘 ----------
+      const spinBtn = document.getElementById('spinButton');
+      const spinDisplay = document.getElementById('spinDisplay');
+      
+      spinBtn.addEventListener('click', () => {
+        const luckyNumber = Math.floor(Math.random() * 21) + 1;
+        spinDisplay.textContent = luckyNumber;
+        spinDisplay.style.transform = 'scale(1.3)';
+        spinDisplay.style.transition = 'transform 0.15s ease';
+        setTimeout(() => { 
+          spinDisplay.style.transform = 'scale(1)'; 
+        }, 150);
+      });
+
+      // ---------- 游戏2: 快速点击挑战 ----------
+      const clickGameBtn = document.getElementById('clickGameBtn');
+      const resetClickBtn = document.getElementById('resetClickGame');
+      const clickScoreSpan = document.getElementById('clickScore');
+      const timerDisplaySpan = document.getElementById('timerDisplay');
+
+      let clickCount = 0;
+      let timeLeft = 10;
+      let gameActive = false;
+      let timerInterval = null;
+
+      function updateClickUI() {
+        clickScoreSpan.textContent = clickCount;
+        timerDisplaySpan.textContent = timeLeft;
+      }
+
+      function stopClickGame() {
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+        gameActive = false;
+        clickGameBtn.disabled = true;
+      }
+
+      function startClickGame() {
+        stopClickGame();
+        clickCount = 0;
+        timeLeft = 10;
+        gameActive = true;
+        clickGameBtn.disabled = false;
+        updateClickUI();
+
+        timerInterval = setInterval(() => {
+          timeLeft--;
+          timerDisplaySpan.textContent = timeLeft;
+          if (timeLeft <= 0) {
+            stopClickGame();
+            timerDisplaySpan.textContent = '0';
+            setTimeout(() => {
+              alert(`⏰ 时间到！你的得分是 ${clickCount} 次点击。`);
+            }, 50);
+          }
+        }, 1000);
+      }
+
+      clickGameBtn.addEventListener('click', () => {
+        if (!gameActive) {
+          startClickGame();
+        }
+        if (gameActive) {
+          clickCount++;
+          clickScoreSpan.textContent = clickCount;
+        }
+      });
+
+      resetClickBtn.addEventListener('click', () => {
+        stopClickGame();
+        clickCount = 0;
+        timeLeft = 10;
+        gameActive = false;
+        clickGameBtn.disabled = false;
+        updateClickUI();
+      });
+
+      clickGameBtn.disabled = false;
+      gameActive = false;
+      updateClickUI();
+
+      // ---------- 游戏3: 俄罗斯方块 ----------
+      const board = document.getElementById('tetrisBoard');
+      const scoreDisplay = document.getElementById('tetrisScore');
+      const startBtn = document.getElementById('tetrisStart');
+      const pauseBtn = document.getElementById('tetrisPause');
+      const resetBtn = document.getElementById('tetrisReset');
+
+      const COLS = 10;
+      const ROWS = 20;
+      const BLOCK_SIZE = 1;
+
+      // 俄罗斯方块形状定义
+      const SHAPES = [
+        [[1, 1, 1, 1]], // I
+        [[1, 1], [1, 1]], // O
+        [[0, 1, 0], [1, 1, 1]], // T
+        [[1, 1, 0], [0, 1, 1]], // S
+        [[0, 1, 1], [1, 1, 0]], // Z
+        [[1, 0, 0], [1, 1, 1]], // L
+        [[0, 0, 1], [1, 1, 1]]  // J
+      ];
+
+      let grid = [];
+      let currentPiece = null;
+      let currentX = 0;
+      let currentY = 0;
+      let score = 0;
+      let gameRunning = false;
+      let gamePaused = false;
+      let dropInterval = null;
+
+      // 创建游戏网格
+      function createGrid() {
+        grid = [];
+        for (let row = 0; row < ROWS; row++) {
+          grid[row] = [];
+          for (let col = 0; col < COLS; col++) {
+            grid[row][col] = 0;
+          }
+        }
+      }
+
+      // 渲染游戏板
+      function renderBoard() {
+        board.innerHTML = '';
+        for (let row = 0; row < ROWS; row++) {
+          for (let col = 0; col < COLS; col++) {
+            const cell = document.createElement('div');
+            cell.className = 'tetris-cell';
+            
+            // 检查是否有当前方块占据此位置
+            let isFilled = grid[row][col] === 1;
+            if (currentPiece && gameRunning && !gamePaused) {
+              for (let r = 0; r < currentPiece.length; r++) {
+                for (let c = 0; c < currentPiece[r].length; c++) {
+                  if (currentPiece[r][c] && 
+                      currentY + r === row && 
+                      currentX + c === col) {
+                    isFilled = true;
+                  }
+                }
+              }
+            }
+            
+            if (isFilled) {
+              cell.classList.add('filled');
+            }
+            board.appendChild(cell);
+          }
+        }
+      }
+
+      // 生成随机方块
+      function randomPiece() {
+        const shape = SHAPES[Math.floor(Math.random() * SHAPES.length)];
+        return shape;
+      }
+
+      // 检查碰撞
+      function checkCollision(piece, x, y) {
+        for (let r = 0; r < piece.length; r++) {
+          for (let c = 0; c < piece[r].length; c++) {
+            if (piece[r][c]) {
+              const newX = x + c;
+              const newY = y + r;
+              if (newX < 0 || newX >= COLS || newY >= ROWS) {
+                return true;
+              }
+              if (newY >= 0 && grid[newY][newX]) {
+                return true;
+              }
+            }
+          }
+        }
+        return false;
+      }
+
+      // 固定方块到网格
+      function lockPiece() {
+        for (let r = 0; r < currentPiece.length; r++) {
+          for (let c = 0; c < currentPiece[r].length; c++) {
+            if (currentPiece[r][c]) {
+              const y = currentY + r;
+              const x = currentX + c;
+              if (y >= 0 && y < ROWS && x >= 0 && x < COLS) {
+                grid[y][x] = 1;
+              }
+            }
+          }
+        }
+      }
+
+      // 清除完整行
+      function clearLines() {
+        let linesCleared = 0;
+        for (let row = ROWS - 1; row >= 0; row--) {
+          if (grid[row].every(cell => cell === 1)) {
+            grid.splice(row, 1);
+            grid.unshift(new Array(COLS).fill(0));
+            linesCleared++;
+            row++; // 重新检查当前行
+          }
+        }
+        if (linesCleared > 0) {
+          score += linesCleared * 100;
+          scoreDisplay.textContent = score;
+        }
+      }
+
+      // 生成新方块
+      function spawnPiece() {
+        currentPiece = randomPiece();
+        currentX = Math.floor((COLS - currentPiece[0].length) / 2);
+        currentY = 0;
+        
+        if (checkCollision(currentPiece, currentX, currentY)) {
+          // 游戏结束
+          gameOver();
+        }
+      }
+
+      // 移动方块
+      function movePiece(dx, dy) {
+        if (!gameRunning || gamePaused || !currentPiece) return false;
+        
+        if (!checkCollision(currentPiece, currentX + dx, currentY + dy)) {
+          currentX += dx;
+          currentY += dy;
+          renderBoard();
+          return true;
+        }
+        return false;
+      }
+
+      // 旋转方块
+      function rotatePiece() {
+        if (!gameRunning || gamePaused || !currentPiece) return;
+        
+        const rotated = [];
+        const rows = currentPiece.length;
+        const cols = currentPiece[0].length;
+        
+        for (let c = 0; c < cols; c++) {
+          rotated[c] = [];
+          for (let r = rows - 1; r >= 0; r--) {
+            rotated[c][rows - 1 - r] = currentPiece[r][c];
+          }
+        }
+        
+        if (!checkCollision(rotated, currentX, currentY)) {
+          currentPiece = rotated;
+          renderBoard();
+        }
+      }
+
+      // 下落一步
+      function dropDown() {
+        if (!gameRunning || gamePaused) return;
+        
+        if (!movePiece(0, 1)) {
+          lockPiece();
+          clearLines();
+          spawnPiece();
+          renderBoard();
+        }
+      }
+
+      // 游戏结束
+      function gameOver() {
+        gameRunning = false;
+        if (dropInterval) {
+          clearInterval(dropInterval);
+          dropInterval = null;
+        }
+        currentPiece = null;
+        renderBoard();
+        setTimeout(() => {
+          alert(`游戏结束！最终得分: ${score}`);
+        }, 100);
+      }
+
+      // 开始游戏
+      function startGame() {
+        if (gameRunning && !gamePaused) return;
+        
+        if (!gameRunning) {
+          createGrid();
+          score = 0;
+          scoreDisplay.textContent = '0';
+          spawnPiece();
+          gameRunning = true;
+          gamePaused = false;
+          renderBoard();
+        } else if (gamePaused) {
+          gamePaused = false;
+        }
+        
+        if (dropInterval) clearInterval(dropInterval);
+        dropInterval = setInterval(dropDown, 800);
+      }
+
+      // 暂停游戏
+      function pauseGame() {
+        if (!gameRunning) return;
+        gamePaused = !gamePaused;
+        if (gamePaused) {
+          if (dropInterval) {
+            clearInterval(dropInterval);
+            dropInterval = null;
+          }
+        } else {
+          dropInterval = setInterval(dropDown, 800);
+        }
+      }
+
+      // 重置游戏
+      function resetGame() {
+        if (dropInterval) {
+          clearInterval(dropInterval);
+          dropInterval = null;
+        }
+        gameRunning = false;
+        gamePaused = false;
+        currentPiece = null;
+        createGrid();
+        score = 0;
+        scoreDisplay.textContent = '0';
+        renderBoard();
+      }
+
+      // 键盘控制
+      document.addEventListener('keydown', (e) => {
+        if (!gameRunning || gamePaused) return;
+        
+        switch(e.key) {
+          case 'ArrowLeft':
+            e.preventDefault();
+            movePiece(-1, 0);
+            break;
+          case 'ArrowRight':
+            e.preventDefault();
+            movePiece(1, 0);
+            break;
+          case 'ArrowDown':
+            e.preventDefault();
+            dropDown();
+            break;
+          case 'ArrowUp':
+            e.preventDefault();
+            rotatePiece();
+            break;
+        }
+      });
+
+      // 按钮事件
+      startBtn.addEventListener('click', startGame);
+      pauseBtn.addEventListener('click', pauseGame);
+      resetBtn.addEventListener('click', resetGame);
+
+      // 初始化
+      createGrid();
+      renderBoard();
+
+    })();
+  </script>
+</body>
+</html>
